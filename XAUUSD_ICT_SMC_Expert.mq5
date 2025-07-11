@@ -104,7 +104,7 @@ double monthlyBias, weeklyBias, dailyBias;
 
 //--- Dashboard Variables
 string dashboardText[];
-int dashboardLines = 12;
+int dashboardLines;
 
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
@@ -115,6 +115,9 @@ int OnInit() {
         Alert("This EA is designed for XAUUSD (Gold) only!");
         return(INIT_FAILED);
     }
+    
+    // Initialize constants
+    dashboardLines = 12;
     
     // Initialize arrays
     ArrayResize(orderBlocks, 0);
@@ -157,7 +160,7 @@ void OnTick() {
     // Update account information
     accountBalance = AccountInfoDouble(ACCOUNT_BALANCE);
     accountEquity = AccountInfoDouble(ACCOUNT_EQUITY);
-    currentSpread = SymbolInfoInteger(Symbol(), SYMBOL_SPREAD) * Point();
+    currentSpread = SymbolInfoInteger(Symbol(), SYMBOL_SPREAD) * SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     
     // Update risk mode based on balance
     UpdateRiskMode();
@@ -448,9 +451,10 @@ int CalculateOBStrength(ENUM_TIMEFRAMES timeframe, int index) {
 //| Check for Duplicate Order Block                                 |
 //+------------------------------------------------------------------+
 bool DuplicateOB(const OrderBlock &ob) {
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     for(int i = 0; i < ArraySize(orderBlocks); i++) {
-        if(MathAbs(orderBlocks[i].high - ob.high) < Point() * 10 &&
-           MathAbs(orderBlocks[i].low - ob.low) < Point() * 10 &&
+        if(MathAbs(orderBlocks[i].high - ob.high) < point_value * 10 &&
+           MathAbs(orderBlocks[i].low - ob.low) < point_value * 10 &&
            orderBlocks[i].direction == ob.direction) {
             return true;
         }
@@ -587,9 +591,10 @@ void FindFairValueGaps(ENUM_TIMEFRAMES timeframe) {
 //| Check for Duplicate FVG                                         |
 //+------------------------------------------------------------------+
 bool DuplicateFVG(const FairValueGap &fvg) {
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     for(int i = 0; i < ArraySize(fvgArray); i++) {
-        if(MathAbs(fvgArray[i].high - fvg.high) < Point() * 5 &&
-           MathAbs(fvgArray[i].low - fvg.low) < Point() * 5 &&
+        if(MathAbs(fvgArray[i].high - fvg.high) < point_value * 5 &&
+           MathAbs(fvgArray[i].low - fvg.low) < point_value * 5 &&
            fvgArray[i].direction == fvg.direction) {
             return true;
         }
@@ -642,7 +647,8 @@ void UpdateLiquidityLevels() {
 //+------------------------------------------------------------------+
 void FindLiquidityLevels() {
     int lookback = 50;
-    double tolerance = Point() * 20;
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+    double tolerance = point_value * 20;
     
     for(int i = 2; i < lookback; i++) {
         double high = iHigh(Symbol(), HTF_Timeframe, i);
@@ -697,8 +703,9 @@ void FindLiquidityLevels() {
 //| Check for Duplicate Liquidity Level                             |
 //+------------------------------------------------------------------+
 bool DuplicateLiquidity(const LiquidityLevel &level) {
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     for(int i = 0; i < ArraySize(liquidityLevels); i++) {
-        if(MathAbs(liquidityLevels[i].price - level.price) < Point() * 10) {
+        if(MathAbs(liquidityLevels[i].price - level.price) < point_value * 10) {
             return true;
         }
     }
@@ -819,7 +826,8 @@ bool CheckSniperConfluence() {
     if(Enable_LiquiditySweep) {
         for(int i = 0; i < ArraySize(liquidityLevels); i++) {
             if(!liquidityLevels[i].swept) {
-                if(MathAbs(current_price - liquidityLevels[i].price) < Point() * 100) {
+                double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+                if(MathAbs(current_price - liquidityLevels[i].price) < point_value * 100) {
                     liquidity_near = true;
                     break;
                 }
@@ -968,8 +976,9 @@ double CalculateLotSize() {
     double sl_distance = CalculateStopLossDistance();
     if(sl_distance <= 0) return 0;
     
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     double tick_value = SymbolInfoDouble(Symbol(), SYMBOL_TRADE_TICK_VALUE);
-    double lot_size = risk_amount / (sl_distance / Point() * tick_value);
+    double lot_size = risk_amount / (sl_distance / point_value * tick_value);
     
     // Normalize lot size
     double min_lot = SymbolInfoDouble(Symbol(), SYMBOL_VOLUME_MIN);
@@ -988,7 +997,8 @@ double CalculateLotSize() {
 //+------------------------------------------------------------------+
 double CalculateStopLossDistance() {
     // Base SL distance on structure
-    double distance = Point() * 500; // Default 50 pips for Gold
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+    double distance = point_value * 500; // Default 50 pips for Gold
     
     // Adjust based on current volatility
     double atr = iATR(Symbol(), Entry_Timeframe, 14, 1);
@@ -1064,7 +1074,8 @@ double CalculateTakeProfit(int direction, double sl) {
 //+------------------------------------------------------------------+
 bool ValidateSLTP(int direction, double sl, double tp) {
     double current_price = SymbolInfoDouble(Symbol(), (direction == 1) ? SYMBOL_ASK : SYMBOL_BID);
-    double min_distance = SymbolInfoInteger(Symbol(), SYMBOL_TRADE_STOPS_LEVEL) * Point();
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+    double min_distance = SymbolInfoInteger(Symbol(), SYMBOL_TRADE_STOPS_LEVEL) * point_value;
     
     // Check minimum distance for SL
     if(MathAbs(current_price - sl) < min_distance) return false;
@@ -1127,8 +1138,9 @@ bool IsAtBreakEven(ulong ticket) {
     
     double open_price = PositionGetDouble(POSITION_PRICE_OPEN);
     double sl = PositionGetDouble(POSITION_SL);
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
     
-    return MathAbs(sl - open_price) < Point() * 5;
+    return MathAbs(sl - open_price) < point_value * 5;
 }
 
 //+------------------------------------------------------------------+
@@ -1151,7 +1163,8 @@ void MoveToBreakEven(ulong ticket, int type, double open_price, double current_p
         ZeroMemory(request);
         request.action = TRADE_ACTION_SLTP;
         request.position = ticket;
-        request.sl = open_price + (Point() * 10); // Small buffer above break-even
+        double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+        request.sl = open_price + (point_value * 10); // Small buffer above break-even
         request.tp = PositionGetDouble(POSITION_TP);
         
         OrderSend(request, result);
@@ -1162,7 +1175,8 @@ void MoveToBreakEven(ulong ticket, int type, double open_price, double current_p
 //| Trail Stop Loss                                                 |
 //+------------------------------------------------------------------+
 void TrailStopLoss(ulong ticket, int type, double current_price, double current_sl) {
-    double trail_distance = Point() * 200; // 20 pips trailing
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+    double trail_distance = point_value * 200; // 20 pips trailing
     double new_sl = current_sl;
     
     if(type == POSITION_TYPE_BUY) {
@@ -1256,7 +1270,8 @@ void UpdateDashboard() {
     dashboardText[1] = "Mode: " + currentRiskMode;
     dashboardText[2] = "Balance: $" + DoubleToString(accountBalance, 2);
     dashboardText[3] = "Equity: $" + DoubleToString(accountEquity, 2);
-    dashboardText[4] = "Spread: " + DoubleToString(currentSpread / Point(), 1) + " pts";
+    double point_value = SymbolInfoDouble(Symbol(), SYMBOL_POINT);
+    dashboardText[4] = "Spread: " + DoubleToString(currentSpread / point_value, 1) + " pts";
     dashboardText[5] = "Trades Today: " + IntegerToString(tradesCountToday);
     dashboardText[6] = "Session: " + session;
     dashboardText[7] = "Daily P&L: $" + DoubleToString(daily_pnl, 2);
