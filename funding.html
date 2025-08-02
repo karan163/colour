@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funding Plans - PropFirm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">PropFirm</div>
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">PropFirm</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="funding.html" class="nav-link active">Funding Plans</a>
+                <a href="rules.html" class="nav-link">Rules</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Funding Plans Section -->
+    <section class="funding-plans">
+        <div class="container">
+            <h1 class="page-title">Choose Your Challenge</h1>
+            <p class="page-subtitle">Select the perfect plan to showcase your trading skills</p>
+            
+            <div class="plans-grid">
+                <!-- Rapid Start Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Rapid Start</h3>
+                        <p class="plan-phase">One Phase</p>
+                        <div class="plan-features">
+                            <span class="feature-tag">No Refund</span>
+                            <span class="feature-tag">Min 10 Trading Days</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <div class="pricing-table">
+                            <div class="pricing-header">
+                                <span>Account Size</span>
+                                <span>Leverage</span>
+                                <span>Weekly Holding</span>
+                                <span>News Trading</span>
+                                <span>Fee</span>
+                            </div>
+                            <div class="pricing-row" data-plan="rapid" data-size="5k">
+                                <span>$5,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$199</span>
+                                <button class="btn-buy" onclick="openPlanDetails('rapid', '5k', '$199')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="rapid" data-size="10k">
+                                <span>$10,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$299</span>
+                                <button class="btn-buy" onclick="openPlanDetails('rapid', '10k', '$299')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="rapid" data-size="25k">
+                                <span>$25,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$499</span>
+                                <button class="btn-buy" onclick="openPlanDetails('rapid', '25k', '$499')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="rapid" data-size="50k">
+                                <span>$50,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$799</span>
+                                <button class="btn-buy" onclick="openPlanDetails('rapid', '50k', '$799')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="rapid" data-size="100k">
+                                <span>$100,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$1,199</span>
+                                <button class="btn-buy" onclick="openPlanDetails('rapid', '100k', '$1,199')">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Trader Plan -->
+                <div class="plan-card featured">
+                    <div class="plan-header">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3 class="plan-name">Pro Trader</h3>
+                        <p class="plan-phase">Two Phase</p>
+                        <div class="plan-features">
+                            <span class="feature-tag">Refund on First Payout</span>
+                            <span class="feature-tag">Min 5 Trading Days</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <div class="pricing-table">
+                            <div class="pricing-header">
+                                <span>Account Size</span>
+                                <span>Leverage</span>
+                                <span>Weekly Holding</span>
+                                <span>News Trading</span>
+                                <span>Fee</span>
+                            </div>
+                            <div class="pricing-row" data-plan="pro" data-size="5k">
+                                <span>$5,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$149</span>
+                                <button class="btn-buy" onclick="openPlanDetails('pro', '5k', '$149')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="pro" data-size="10k">
+                                <span>$10,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$229</span>
+                                <button class="btn-buy" onclick="openPlanDetails('pro', '10k', '$229')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="pro" data-size="25k">
+                                <span>$25,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$379</span>
+                                <button class="btn-buy" onclick="openPlanDetails('pro', '25k', '$379')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="pro" data-size="50k">
+                                <span>$50,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$599</span>
+                                <button class="btn-buy" onclick="openPlanDetails('pro', '50k', '$599')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="pro" data-size="100k">
+                                <span>$100,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$899</span>
+                                <button class="btn-buy" onclick="openPlanDetails('pro', '100k', '$899')">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elite Challenge Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Elite Challenge</h3>
+                        <p class="plan-phase">Three Phase</p>
+                        <div class="plan-features">
+                            <span class="feature-tag">Refund on First Payout</span>
+                            <span class="feature-tag">Min 5 Trading Days per Phase</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-pricing">
+                        <div class="pricing-table">
+                            <div class="pricing-header">
+                                <span>Account Size</span>
+                                <span>Leverage</span>
+                                <span>Weekly Holding</span>
+                                <span>News Trading</span>
+                                <span>Fee</span>
+                            </div>
+                            <div class="pricing-row" data-plan="elite" data-size="5k">
+                                <span>$5,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$99</span>
+                                <button class="btn-buy" onclick="openPlanDetails('elite', '5k', '$99')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="elite" data-size="10k">
+                                <span>$10,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$159</span>
+                                <button class="btn-buy" onclick="openPlanDetails('elite', '10k', '$159')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="elite" data-size="25k">
+                                <span>$25,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$259</span>
+                                <button class="btn-buy" onclick="openPlanDetails('elite', '25k', '$259')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="elite" data-size="50k">
+                                <span>$50,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$399</span>
+                                <button class="btn-buy" onclick="openPlanDetails('elite', '50k', '$399')">Buy Now</button>
+                            </div>
+                            <div class="pricing-row" data-plan="elite" data-size="100k">
+                                <span>$100,000</span>
+                                <span>1:100</span>
+                                <span>Allowed</span>
+                                <span>Allowed</span>
+                                <span>$599</span>
+                                <button class="btn-buy" onclick="openPlanDetails('elite', '100k', '$599')">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Details Modal -->
+    <div id="planDetailsModal" class="modal">
+        <div class="modal-content plan-details-content">
+            <span class="close" onclick="closePlanDetails()">&times;</span>
+            <h2 id="planDetailsTitle">Plan Details</h2>
+            
+            <div class="plan-summary">
+                <div class="summary-item">
+                    <label>Selected Plan:</label>
+                    <span id="selectedPlan"></span>
+                </div>
+                <div class="summary-item">
+                    <label>Account Size:</label>
+                    <span id="selectedSize"></span>
+                </div>
+                <div class="summary-item">
+                    <label>Fee:</label>
+                    <span id="selectedFee"></span>
+                </div>
+            </div>
+
+            <div class="platform-selection">
+                <h3>Choose Platform</h3>
+                <div class="platform-options">
+                    <label class="platform-option">
+                        <input type="radio" name="platform" value="mt4" checked>
+                        <span>MetaTrader 4</span>
+                    </label>
+                    <label class="platform-option">
+                        <input type="radio" name="platform" value="mt5">
+                        <span>MetaTrader 5</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="profit-split-info">
+                <h3>Profit Split</h3>
+                <p>You keep <strong>80%</strong> of the profits, we keep 20%</p>
+            </div>
+
+            <div class="rules-summary">
+                <h3>Key Rules</h3>
+                <ul>
+                    <li>Daily Drawdown: 5%</li>
+                    <li>Overall Drawdown: 10%</li>
+                    <li id="tradingDaysRule">Minimum trading days</li>
+                    <li>News Trading: Allowed</li>
+                    <li>EAs: Not Allowed</li>
+                    <li>Weekend Holding: Allowed</li>
+                </ul>
+            </div>
+
+            <button class="btn-primary proceed-payment" onclick="proceedToPayment()">
+                Proceed to Payment
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="switchToSignup()">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

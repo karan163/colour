@@ -1,0 +1,41 @@
+{
+  "name": "propfirm-website",
+  "version": "1.0.0",
+  "description": "Premium responsive website for a proprietary trading firm",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server .",
+    "build": "echo 'No build process required - static HTML/CSS/JS'",
+    "deploy": "echo 'Ready for deployment to Vercel, Netlify, or any static hosting'"
+  },
+  "keywords": [
+    "propfirm",
+    "trading",
+    "website",
+    "responsive",
+    "dark-theme",
+    "gold-accents",
+    "trading-challenge"
+  ],
+  "author": "PropFirm Development Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/propfirm/website.git"
+  },
+  "homepage": "https://propfirm.com",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

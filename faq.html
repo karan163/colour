@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - PropFirm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">PropFirm</div>
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">PropFirm</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="funding.html" class="nav-link">Funding Plans</a>
+                <a href="rules.html" class="nav-link">Rules</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-signup" onclick="openSignupModal()">Sign Up</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h1 class="page-title">Frequently Asked Questions</h1>
+            <p class="page-subtitle">Find answers to common questions about our trading challenges</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How does the challenge work?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Our trading challenge is a multi-phase evaluation process designed to identify skilled traders. 
+                            You start with a simulated account and must meet specific profit targets while adhering to risk 
+                            management rules. The Rapid Start is a single phase, Pro Trader has two phases, and Elite Challenge 
+                            has three phases. Upon successful completion, you'll receive a funded account with real capital.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>When do I get funded?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            You receive funding after successfully completing all phases of your chosen challenge. For Rapid Start, 
+                            this means achieving the profit target in one phase. Pro Trader requires completion of two phases, 
+                            and Elite Challenge requires three phases. Once you pass all phases, you'll receive access to a 
+                            funded account with the same balance as your challenge account.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is the refund policy?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            The refund policy varies by plan. Rapid Start challenges do not offer refunds. However, Pro Trader 
+                            and Elite Challenge participants receive a full refund of their challenge fee with their first 
+                            profit payout from the funded account. This means your initial investment is returned once you 
+                            start earning profits as a funded trader.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Can I use EAs (Expert Advisors)?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            No, Expert Advisors (EAs) and automated trading systems are not allowed during the evaluation 
+                            phases or on funded accounts. We require all trading to be done manually to assess your personal 
+                            trading skills and decision-making abilities. Copy trading and third-party signals are also 
+                            prohibited for the same reason.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you allow news trading?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, news trading is fully allowed on all our challenges and funded accounts. You can trade 
+                            during high-impact news events, economic releases, and market announcements. We believe that 
+                            skilled traders should be able to capitalize on all market opportunities, including those 
+                            created by fundamental news events.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do payouts work?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Payouts are processed bi-weekly (every 14 days) for funded traders who have made profits. 
+                            You keep 80% of the profits while we retain 20%. Payouts are made via bank transfer, PayPal, 
+                            or cryptocurrency, depending on your preference and location. The minimum payout amount is $100, 
+                            and there are no hidden fees or charges on withdrawals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is the profit split?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Our profit split is 80/20 in your favor. This means you keep 80% of all profits generated 
+                            on your funded account, while PropFirm retains 20%. This split remains consistent throughout 
+                            your time as a funded trader. There are no scaling tiers or changing percentages - it's a 
+                            straightforward 80/20 split from your first payout onwards.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What platforms do you support?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            We support both MetaTrader 4 (MT4) and MetaTrader 5 (MT5) platforms. You can choose your 
+                            preferred platform when purchasing a challenge. Both platforms offer full functionality 
+                            including all major currency pairs, commodities, indices, and cryptocurrencies. Our servers 
+                            provide fast execution and minimal slippage for optimal trading conditions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still have questions section -->
+            <div class="contact-cta">
+                <h2>Still Have Questions?</h2>
+                <p>Can't find the answer you're looking for? Our support team is here to help.</p>
+                <a href="contact.html" class="btn-primary">Contact Support</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="switchToSignup()">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
